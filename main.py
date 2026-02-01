@@ -15,3 +15,9 @@ if prompt := st.chat_input('Ask something about me!'):
     with st.chat_message('user'):
         st.markdown(prompt)
     st.session_state.messages.append({'role': 'user', 'content': prompt})
+
+    # TODO: Generate response
+    response = 'Response to be generated'
+    with st.chat_message('assistant'):
+        st.markdown(response)
+    st.session_state.messages.append({'role': 'assistant', 'content': response})
