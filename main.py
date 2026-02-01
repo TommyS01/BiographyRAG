@@ -3,14 +3,14 @@ import streamlit as st
 
 st.title('Tommy QA Bot')
 
-# initialize message history and write previous message
+# initialize and print message history
 if "messages" not in st.session_state:
     st.session_state['messages'] = []
-
 for message in st.session_state['messages']:
     with st.chat_message(message['role']):
         st.markdown(message['content'])
 
+# prompt for user input
 if prompt := st.chat_input('Ask something about me!'):
     with st.chat_message('user'):
         st.markdown(prompt)
@@ -21,3 +21,9 @@ if prompt := st.chat_input('Ask something about me!'):
     with st.chat_message('assistant'):
         st.markdown(response)
     st.session_state.messages.append({'role': 'assistant', 'content': response})
+
+# clear chat history
+if len(st.session_state.messages) > 0:
+    if st.button('Clear'):
+        st.session_state.messages = []
+        st.rerun()
